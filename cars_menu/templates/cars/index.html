@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+   <nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <span class="navbar-brand">Car catalog</span>
+  </div>
+</nav>
+
+<main class="container py-4">
+  <h2 class="mb-4">Our cars</h2>
+
+  <div class="row g-3">
+
+    <!-- Car -->
+    <div class="col-12">
+      <div class="row g-0 border rounded overflow-hidden shadow-sm">
+        <div class="col-md-4">
+          <img
+            src="https://images.unsplash.com/photo-1502877338535-766e1452684a"
+            class="img-fluid w-100 h-100"
+            alt="BMW"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="p-3 h-100 d-flex flex-column">
+            <h5>BMW</h5>
+            <p class="text-muted mb-2">
+              Premium sport sedan with modern interior.
+            </p>
+            <div class="mt-auto">
+              <a href="/cars/{{1}}" class="btn btn-outline-primary btn-sm">
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car -->
+    <div class="col-12">
+      <div class="row g-0 border rounded overflow-hidden shadow-sm">
+        <div class="col-md-4">
+          <img
+            src="https://images.unsplash.com/photo-1549924231-f129b911e442"
+            class="img-fluid w-100 h-100"
+            alt="Audi"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="p-3 h-100 d-flex flex-column">
+            <h5>Audi</h5>
+            <p class="text-muted mb-2">
+              Clean design, quattro AWD system.
+            </p>
+            <div class="mt-auto">
+              <a href="/cars/{{ 2 }}" class="btn btn-outline-primary btn-sm">
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car -->
+    <div class="col-12">
+      <div class="row g-0 border rounded overflow-hidden shadow-sm">
+        <div class="col-md-4">
+          <img
+            src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c"
+            class="img-fluid w-100 h-100"
+            alt="Mercedes"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="p-3 h-100 d-flex flex-column">
+            <h5>Mercedes</h5>
+            <p class="text-muted mb-2">
+              Luxury and comfort class vehicle.
+            </p>
+            <div class="mt-auto">
+              <a href="/cars/{{ 3 }}" class="btn btn-outline-primary btn-sm">
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="container py-4">
+  <p class="text-muted mb-0">© 2025 Car catalog</p>
+</footer>
+
+</body>
+</html>
