@@ -1,28 +1,16 @@
 from django.shortcuts import render
-
+from django.shortcuts import get_object_or_404, redirect
+from cars_menu.models import Car
+from django.views.decorators.csrf import csrf_exempt
 def index(request):
-    return render(request, 'cars/index.html')
+    cars = Car.objects.all()
+    return render(request, 'cars/index.html', {'cars': cars})
 
-cars = [
-    {
-        'id': 1,
-        'name': 'BMW',
-        'description': 'Sport sedan',
-        'image': 'https://images.unsplash.com/photo-1502877338535-766e1452684a'
-    },
-    {
-        'id': 2,
-        'name': 'Audi',
-        'description': 'Quattro AWD',
-        'image': 'https://images.unsplash.com/photo-1549924231-f129b911e442'
-    },
-    {
-        'id': 3,
-        'name': 'Mercedes',
-        'description': 'Luxury class',
-        'image': 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c'
-    },
-]
 def car(request, id):
-     car = next((c for c in cars if c['id'] == id), None)
+     car = Car.objects.get(pk =id)
      return render(request, 'cars/car.html', {'car': car})
+@csrf_exempt
+def delete_car(request, id):
+     car = Car.objects.get(pk = id)
+     car.delete()
+     return redirect(request.META.get('HTTP_REFERER', '/'))

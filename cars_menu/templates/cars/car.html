@@ -1,42 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>{{ car.name }}</title>
-    <style>
-        .car-card {
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            padding: 30px;
-        }
-        .car-image {
-            max-height: 400px;
-            object-fit: cover;
-            width: 100%;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body class="bg-light">
-
+{% extends "basetitle.html" %}
+{% block content %}
 <div class="container py-5">
     <a href="{% url 'car_list' %}" class="btn btn-secondary mb-4">← Back to list</a>
 
     <div class="row justify-content-center car-card g-4 align-items-center">
         <div class="col-12 col-md-6">
-            <img src="{{ car.image }}" alt="{{ car.name }}" class="car-image">
+            <img width="1000px" src="{{ car.image }}" alt="{{ car.name }}" class="car-image">
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" style="text-align: right;">
             <h1 class="mb-3">{{ car.name }}</h1>
             <p class="lead">{{ car.description }}</p>
             <a href="{% url 'car_list' %}" class="btn btn-primary mt-3">Back to list</a>
         </div>
     </div>
 </div>
+{% endblock %}
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

@@ -1,0 +1,46 @@
+[
+  {
+    "model": "cars_menu.Car",
+    "pk": 1,
+    "fields": {
+      "name": "BMW M3",
+      "image": "https://images.unsplash.com/photo-1502877338535-766e1452684a",
+      "description": "Sport sedan with powerful engine",
+      "price": "65000.00",
+      "category": "sedan"
+    }
+  },
+  {
+    "model": "cars_menu.Car",
+    "pk": 2,
+    "fields": {
+      "name": "Audi Q7",
+      "image": "https://images.unsplash.com/photo-1549924231-f129b911e442",
+      "description": "Luxury SUV for family trips",
+      "price": "72000.00",
+      "category": "suv"
+    }
+  },
+  {
+    "model": "cars_menu.Car",
+    "pk": 3,
+    "fields": {
+      "name": "Mazda MX-5",
+      "image": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c",
+      "description": "Lightweight convertible sports car",
+      "price": "32000.00",
+      "category": "convertible"
+    }
+  },
+  {
+    "model": "cars_menu.Car",
+    "pk": 4,
+    "fields": {
+      "name": "Volkswagen Transporter",
+      "image": "https://images.unsplash.com/photo-1601758123927-2fa9d0d521f3?auto=format&fit=crop&w=800&q=80",
+      "description": "Reliable minivan for work and travel",
+      "price": "28000.00",
+      "category": "van"
+    }
+  }
+]
