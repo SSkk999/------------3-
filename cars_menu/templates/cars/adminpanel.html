@@ -1,7 +1,7 @@
 {% extends "basetitle.html" %}
 {% block content %}
   <h2 class="mb-4">Our cars</h2>
-
+  <a href="/cars/create/" class="btn btn-primary mb-3">Create Car</a>
   <div class="row g-3">
   {% for c in cars %}
     <!-- Car -->
@@ -32,7 +32,13 @@
               </a>
               <form method="post" action="{% url 'delete_car' c.id %}" style="display:inline;">
                     {% csrf_token %}
+               <button type="submit" class="btn btn-danger">
+                  Delete
+              </button>
 </form>
+<a href="/cars/update/{{c.id}}" class="btn btn-info">
+    Edit
+  </a>
             </div>
           </div>
         </div>
