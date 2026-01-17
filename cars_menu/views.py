@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, redirect
 from cars_menu.models import Car
 from django.views.decorators.csrf import csrf_exempt
 from cars_menu.forms.car import CarsForm
+from django.contrib import messages
 def index(request):
     cars = Car.objects.all()
     return render(request, 'cars/index.html', {'cars': cars})
@@ -15,6 +16,7 @@ def car(request, id):
 def delete_car(request, id):
      car = Car.objects.get(pk = id)
      car.delete()
+     messages.success(request, f"Cars has been delete  successfully!","red")
      return redirect(request.META.get('HTTP_REFERER', '/'))
 
 def adminpanel(request):
@@ -23,18 +25,20 @@ def adminpanel(request):
 
 def create(request):
      if request.method == 'POST':
-        cars_form = CarsForm(request.POST)
+        cars_form = CarsForm(request.POST , request.FILES)
         if cars_form.is_valid():
             cars_form.save()
+            messages.success(request, f"Cars has been created  successfully!","green")
             return redirect('adminpanel')
      cars_form = CarsForm()
      return render(request, 'cars/create.html', {'form': cars_form})
 def update_car(request, id):
      car = get_object_or_404(Car,pk=id)
      if request.method == 'POST':
-        cars_form = CarsForm(request.POST, instance=car)
+        cars_form = CarsForm(request.POST, request.FILES,instance=car)
         if cars_form.is_valid():
             cars_form.save()
+            messages.success(request, f"Cars has been updated successfully!","green")
             return redirect('adminpanel')
      cars_form = CarsForm(instance=car)
      return render(request, 'cars/update.html', {'form': cars_form})

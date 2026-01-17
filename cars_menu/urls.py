@@ -1,6 +1,9 @@
+from django.conf import settings
 from django.urls import path
 
 from cars_menu import views
+
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index ,name='car_list'),
@@ -9,6 +12,6 @@ urlpatterns = [
     path('adminpanel', views.adminpanel ,name='adminpanel'),
     path('cars/create/', views.create ,name='create'),
     path('cars/update/<int:id>/', views.update_car, name='update'),
-    
-    
 ]
+if settings.DEBUG:  
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
