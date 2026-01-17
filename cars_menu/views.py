@@ -4,10 +4,18 @@ from cars_menu.models import Car
 from django.views.decorators.csrf import csrf_exempt
 from cars_menu.forms.car import CarsForm
 from django.contrib import messages
-def index(request):
+from favorites.favorites import get_count_of_favorite_car, get_favorite_car
+def index(request, filter_by_favorites=False):
     cars = Car.objects.all()
-    return render(request, 'cars/index.html', {'cars': cars})
-
+    if filter_by_favorites:
+        fav_ids = get_favorite_car(request)
+        cars = cars.filter(id__in=fav_ids)
+    return render(request, 'cars/index.html', {
+        'cars': cars, 
+        "fav_count": get_count_of_favorite_car(request),
+        "fav_ids": get_favorite_car(request),
+     }
+     )
 def car(request, id):
      car = Car.objects.get(pk =id)
      return render(request, 'cars/car.html', {'car': car})

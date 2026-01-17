@@ -30,6 +30,26 @@
               <a href="/cars/{{c.id}}" class="btn btn-outline-primary btn-sm">
                 Details
               </a>
+               <div>
+            {% if c.id in fav_ids %}
+            <a
+              href="/favorites/remove/{{c.id}}/car_list"
+              class="btn btn-outline-success btn-sm"
+              >Unfavorite</a
+            >
+            {% else %}
+             <a
+              href="/favorites/add/{{c.id}}/car_list"
+              class="btn btn-success btn-sm"
+              >Favorite</a
+            >
+            {% endif %}
+            <a
+              href="{% url 'car_detail' c.id %}"
+              class="btn btn-primary btn-sm"
+              >View</a
+            >
+          </div>
               <form method="post" action="{% url 'delete_car' c.id %}" style="display:inline;">
                     {% csrf_token %}
 </form>
