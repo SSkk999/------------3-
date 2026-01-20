@@ -1,0 +1,67 @@
+{% extends "basetitle.html" %}
+{% block content %}
+  <h2 class="mb-4">Favorites cars</h2>
+
+  <div class="row g-3">
+  {% for c in cars %}
+    <!-- Car -->
+    <div class="col-12">
+      <div class="row g-0 border rounded overflow-hidden shadow-sm">
+        <div class="col-md-4">
+          <img
+            src="{{c.image.url}}"
+            class="img-fluid w-100 h-100"
+            alt="BMW"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="p-3 h-100 d-flex flex-column">
+            <h5>{{c.name}}</h5>
+            <p class="text-muted mb-2">
+              {{c.description}}
+            </p>
+            <p class="text-muted mb-2">
+              {{c.price}}
+            </p>
+            <p class="text-muted mb-2">
+              {{c.category}}
+            </p>
+            <div class="mt-auto">
+              <a href="/cars/{{c.id}}" class="btn btn-outline-primary btn-sm">
+                Details
+              </a>
+               <div>
+            {% if c.id in fav_ids %}
+            <a
+              href="/favorites/remove/{{c.id}}/car_list"
+              class="btn btn-outline-success btn-sm"
+              >Unfavorite</a
+            >
+            {% else %}
+             <a
+              href="/favorites/add/{{c.id}}/car_list"
+              class="btn btn-success btn-sm"
+              >Favorite</a
+            >
+            {% endif %}
+            <a
+              href="{% url 'car_detail' c.id %}"
+              class="btn btn-primary btn-sm"
+              >View</a
+            >
+          </div>
+              <form method="post" action="{% url 'delete_car' c.id %}" style="display:inline;">
+                    {% csrf_token %}
+</form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+  <div class="col-12">
+    <div class="alert alert-info">No cars selected.</div>
+  </div>
+  {% endfor %}
+  </div>
+{% endblock %}
