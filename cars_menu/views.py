@@ -7,13 +7,26 @@ from django.contrib import messages
 from favorites.favorites import get_count_of_favorite_car, get_favorite_car
 def index(request, filter_by_favorites=False):
     cars = Car.objects.all()
+    category = request.GET.get('category')
+    selected_category = category
+    if category:
+        cars = cars.filter(category=category)
+    else:
+        cars = Car.objects.all()
     if filter_by_favorites:
         fav_ids = get_favorite_car(request)
         cars = cars.filter(id__in=fav_ids)
+
+    filter_text = request.GET.get("filter_text", "")
+
+    if filter_text:
+        cars = cars.filter(name__icontains=filter_text)
+    
     return render(request, 'cars/index.html', {
         'cars': cars, 
         "fav_count": get_count_of_favorite_car(request),
         "fav_ids": get_favorite_car(request),
+        'selected_category': category
      }
      )
 def car(request, id):

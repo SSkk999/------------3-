@@ -1,7 +1,20 @@
 {% extends "basetitle.html" %}
 {% block content %}
   <h2 class="mb-4">Our cars</h2>
-
+<form method="get">
+  <select name="category" class="form-select-sm" onchange="this.form.submit()">
+    <option value="" {% if selected_category == "" or selected_category == None %}selected{% endif %}>All</option>
+    <option value="sedan" {% if selected_category == "sedan" %}selected{% endif %}>Sedan</option>
+    <option value="hatchback" {% if selected_category == "hatchback" %}selected{% endif %}>Hatchback</option>
+    <option value="suv" {% if selected_category == "suv" %}selected{% endif %}>SUV</option>
+    <option value="crossover" {% if selected_category == "crossover" %}selected{% endif %}>Crossover</option>
+    <option value="coupe" {% if selected_category == "coupe" %}selected{% endif %}>Coupe</option>
+    <option value="convertible" {% if selected_category == "convertible" %}selected{% endif %}>Convertible</option>
+    <option value="wagon" {% if selected_category == "wagon" %}selected{% endif %}>Wagon</option>
+    <option value="pickup" {% if selected_category == "pickup" %}selected{% endif %}>Pickup</option>
+    <option value="van" {% if selected_category == "van" %}selected{% endif %}>Minivan</option>
+  </select>
+</form>
   <div class="row g-3">
   {% for c in cars %}
     <!-- Car -->

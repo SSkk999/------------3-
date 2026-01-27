@@ -33,15 +33,16 @@
             <a class="nav-link" href="{% url 'adminpanel' %}">Admin Panel</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'favorites_list' %}">Favorite List </a>
+            <a class="nav-link" href="{% url 'favorites_list' %}">Favorite List:({{ fav_count }}) </a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
+
+        <form class="d-flex" role="search" method="get" action="{% url 'car_list' %}">
           <input
             class="form-control me-2"
             type="search"
             placeholder="Search"
-            aria-label="Search"
+            name="filter_text"
           />
           <button class="btn btn-outline-success" type="submit">
             Search
