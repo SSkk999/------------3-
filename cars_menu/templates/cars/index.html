@@ -1,0 +1,80 @@
+{% extends "basetitle.html" %}
+{% block content %}
+  <h2 class="mb-4">Our cars</h2>
+<form method="get">
+  <select name="category" class="form-select-sm" onchange="this.form.submit()">
+    <option value="" {% if selected_category == "" or selected_category == None %}selected{% endif %}>All</option>
+    <option value="sedan" {% if selected_category == "sedan" %}selected{% endif %}>Sedan</option>
+    <option value="hatchback" {% if selected_category == "hatchback" %}selected{% endif %}>Hatchback</option>
+    <option value="suv" {% if selected_category == "suv" %}selected{% endif %}>SUV</option>
+    <option value="crossover" {% if selected_category == "crossover" %}selected{% endif %}>Crossover</option>
+    <option value="coupe" {% if selected_category == "coupe" %}selected{% endif %}>Coupe</option>
+    <option value="convertible" {% if selected_category == "convertible" %}selected{% endif %}>Convertible</option>
+    <option value="wagon" {% if selected_category == "wagon" %}selected{% endif %}>Wagon</option>
+    <option value="pickup" {% if selected_category == "pickup" %}selected{% endif %}>Pickup</option>
+    <option value="van" {% if selected_category == "van" %}selected{% endif %}>Minivan</option>
+  </select>
+</form>
+  <div class="row g-3">
+  {% for c in cars %}
+    <!-- Car -->
+    <div class="col-12">
+      <div class="row g-0 border rounded overflow-hidden shadow-sm">
+        <div class="col-md-4">
+          <img
+            src="{{c.image.url}}"
+            class="img-fluid w-100 h-100"
+            alt="BMW"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="p-3 h-100 d-flex flex-column">
+            <h5>{{c.name}}</h5>
+            <p class="text-muted mb-2">
+              {{c.description}}
+            </p>
+            <p class="text-muted mb-2">
+              {{c.price}}
+            </p>
+            <p class="text-muted mb-2">
+              {{c.category}}
+            </p>
+            <div class="mt-auto">
+              <a href="/cars/{{c.id}}" class="btn btn-outline-primary btn-sm">
+                Details
+              </a>
+               <div>
+            {% if c.id in fav_ids %}
+            <a
+              href="/favorites/remove/{{c.id}}/car_list"
+              class="btn btn-outline-success btn-sm"
+              >Unfavorite</a
+            >
+            {% else %}
+             <a
+              href="/favorites/add/{{c.id}}/car_list"
+              class="btn btn-success btn-sm"
+              >Favorite</a
+            >
+            {% endif %}
+            <a
+              href="{% url 'car_detail' c.id %}"
+              class="btn btn-primary btn-sm"
+              >View</a
+            >
+          </div>
+              <form method="post" action="{% url 'delete_car' c.id %}" style="display:inline;">
+                    {% csrf_token %}
+</form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+  <div class="col-12">
+    <div class="alert alert-info">No cars available.</div>
+  </div>
+  {% endfor %}
+  </div>
+{% endblock %}

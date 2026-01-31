@@ -1,0 +1,18 @@
+{% extends "basetitle.html" %}
+{% block content %}
+<div class="container py-5">
+    <a href="{% url 'car_list' %}" class="btn btn-secondary mb-4">← Back to list</a>
+
+    <div class="row justify-content-center car-card g-4 align-items-center">
+        <div class="col-12 col-md-6">
+            <img width="1000px" src="{{ car.image.url }}" alt="{{ car.name }}" class="car-image">
+        </div>
+        <div class="col-12 col-md-6" style="text-align: right;">
+            <h1 class="mb-3">{{ car.name }}</h1>
+            <p class="lead">{{ car.description }}</p>
+            <a href="{% url 'car_list' %}" class="btn btn-primary mt-3">Back to list</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

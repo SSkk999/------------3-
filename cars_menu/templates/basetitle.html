@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="/">Store Gydzy</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'car_list' %}"
+              >Car catalog</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'adminpanel' %}">Admin Panel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'favorites_list' %}">Favorite List:({{ fav_count }}) </a>
+          </li>
+        </ul>
+
+        <form class="d-flex" role="search" method="get" action="{% url 'car_list' %}">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            name="filter_text"
+          />
+          <button class="btn btn-outline-success" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+<main class="container py-4">
+{% block content %} {% endblock %}
+</main>
+
+<footer class="container py-4">
+  <p class="text-muted mb-0">© 2025 Car catalog</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+{% include "components/tosty.html" %}  
+</body>
+</html>

@@ -1,0 +1,20 @@
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="form-group">
+    {% for field in form %}
+      <div class="mb-3">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+          <div class="invalid-feedback d-block">
+            {{ field.errors }}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  <button id="btn" type="submit" class="btn btn-primary">{{button_text}}</button>
+  </form>
+<script src="tosty.js"></script>
+  
